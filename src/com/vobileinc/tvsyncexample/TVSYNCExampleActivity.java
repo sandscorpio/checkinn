@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -68,14 +71,30 @@ public class TVSYNCExampleActivity extends Activity {
 													public void didReceiveQueryResult(final TVSYNCQuery query, final JSONObject result) {
 														// receive query result
 														resultTxt.setVisibility(View.VISIBLE);
-
+														
 														// for image, result is a string
 														resultTxt.setText("Result " + result.toString());
-
+														String title = "unknown_title";
+														try {
+															JSONArray arr = result.getJSONArray("content_attrs");
+															Log.d("app", arr.toString());															
+															JSONObject obj = arr.getJSONObject(2);
+															Log.d("app", obj.toString());
+															title = obj.getString("value");
+														} catch (JSONException e) {
+															// TODO Auto-generated catch block
+															e.printStackTrace();
+														}
+														
 														capturedImg.setVisibility(View.INVISIBLE);
 
 														// stops the query
 														query.stopQuery();
+														
+														Intent intent = new Intent();
+														intent.putExtra("result", title);
+														setResult(RESULT_OK, intent);
+														finish();
 													}
 
 													@Override
@@ -84,7 +103,12 @@ public class TVSYNCExampleActivity extends Activity {
 														status.setText("Query failed " + error.errorCode + error.description);
 
 														// stop query
-														query.stopQuery();
+														query.stopQuery();														
+
+														Intent intent = new Intent();
+														intent.putExtra("error", error.errorCode + error.description);
+														setResult(RESULT_CANCELED, intent);
+														finish();
 													}
 
 													@Override

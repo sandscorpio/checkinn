@@ -31,6 +31,7 @@ public class MainActivity
   extends Activity {
 
   private static final int DEFAULT_GALLERY = 1;
+  private String _title;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MainActivity
     setContentView(R.layout.activity_main);
 
     final Context context = this;
+    Intent intent = getIntent();
+    _title = intent.getStringExtra("title");
 
     // example showing all authentication services
     Button fullButton = (Button)findViewById(R.id.fullAuthButton);
@@ -72,7 +75,7 @@ public class MainActivity
         Intent authServicesActivity = new Intent(context,
           AuthenticatedServicesActivity.class);
         String[] includedServices = {
-          "twitter", "facebook", "github", "linkedin"
+          "twitter", "facebook"
         };
         authServicesActivity.putExtra("includes", includedServices);
         authServicesActivity.putExtra("scopes", scopes);
@@ -120,7 +123,7 @@ public class MainActivity
 			Map post = new HashMap();
 			Authentication auth = singlyClient.getAuthentication(MainActivity.this);
 		    post.put("access_token", auth.accessToken);
-			post.put("body", "Test post from Singly!");
+			post.put("body", _title);
 			post.put("to", "twitter");
 			
 			
