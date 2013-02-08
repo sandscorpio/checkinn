@@ -1,0 +1,23 @@
+<RelativeLayout
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:padding="8dp"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <Button
+    android:id="@+id/btnSnap"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:text="Snap" />
+
+  <Button
+    android:id="@+id/btnCheckIn"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="btnSnap"
+    android:text="Check In" />
+
+</RelativeLayout>

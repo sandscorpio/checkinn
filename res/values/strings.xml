@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TVSync Sample</string>
+  <string name="app_name">Singly Android Examples</string>
+  <string name="menu_settings">Settings</string>
+  <string name="title_activity_authenticated_services">Singly Services</string>
+  <string name="title_activity_main">Singly Examples</string>
+  <string name="button_auth_services">Full Authenticated Services</string>
+  <string name="button_auth_services_limited">Limited Authenticated Services</string>
+  <string name="button_friends">Friends List</string>
+  <string name="button_photos">Post Photo to Facebook</string>
+</resources>
